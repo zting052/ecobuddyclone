@@ -20,7 +20,7 @@ cd ecobuddyclone
 ### 2. Start All Services
 
 ```bash
-docker-compose up
+docker compose up
 ```
 
 This command will:
@@ -42,7 +42,7 @@ Open your browser to:
 Press `Ctrl+C` in terminal, then:
 
 ```bash
-docker-compose down
+docker compose down
 ```
 
 ---
@@ -53,23 +53,23 @@ docker-compose down
 
 ```bash
 # Start all services in detached mode
-docker-compose up -d
+docker compose up -d
 
 # View logs
-docker-compose logs -f
+docker compose logs -f
 
 # View specific service logs
-docker-compose logs -f backend
+docker compose logs -f backend
 ```
 
 ### Rebuild After Code Changes
 
 ```bash
 # Rebuild and restart
-docker-compose up --build
+docker compose up --build
 
 # Rebuild specific service
-docker-compose up --build backend
+docker compose up --build backend
 ```
 
 ### Database Management
@@ -92,13 +92,13 @@ cat backup.sql | docker exec -i ecobuddy-db psql -U ecobuddy energyteen
 
 ```bash
 # Stop and remove containers
-docker-compose down
+docker compose down
 
 # Remove containers and volumes (deletes database data)
-docker-compose down -v
+docker compose down -v
 
 # Remove containers, volumes, and images
-docker-compose down -v --rmi all
+docker compose down -v --rmi all
 ```
 
 ---
@@ -107,7 +107,7 @@ docker-compose down -v --rmi all
 
 ### Default Configuration
 
-The `docker-compose.yml` includes default values for local development:
+The `docker compose.yml` includes default values for local development:
 
 ```yaml
 Database:
@@ -145,7 +145,7 @@ FRONTEND_PORT=8080
 Then use:
 
 ```bash
-docker-compose --env-file .env.docker up
+docker compose --env-file .env.docker up
 ```
 
 ---
@@ -163,7 +163,7 @@ docker-compose --env-file .env.docker up
 sudo lsof -i :80 | grep LISTEN
 sudo kill -9 <PID>
 
-# Option 2: Change port in docker-compose.yml
+# Option 2: Change port in docker compose.yml
 # Edit frontend ports to "8080:80"
 ```
 
@@ -177,10 +177,10 @@ sudo kill -9 <PID>
 docker ps | grep ecobuddy-db
 
 # Check database logs
-docker-compose logs db
+docker compose logs db
 
 # Restart database
-docker-compose restart db
+docker compose restart db
 ```
 
 ### Build Failures
@@ -190,7 +190,7 @@ docker-compose restart db
 **Solution**:
 ```bash
 # Clean build cache
-docker-compose build --no-cache
+docker compose build --no-cache
 
 # Remove old images
 docker system prune -a
@@ -207,7 +207,7 @@ docker build -f backend/Dockerfile backend/
 1. Verify backend is running: http://localhost:3001/api/health
 2. Check browser console for CORS errors
 3. Ensure `VITE_API_URL` build arg is correct
-4. Rebuild frontend: `docker-compose up --build frontend`
+4. Rebuild frontend: `docker compose up --build frontend`
 
 ---
 
@@ -219,7 +219,7 @@ For active development, use local dev servers instead of Docker:
 
 ```bash
 # Terminal 1: Database only
-docker-compose up db
+docker compose up db
 
 # Terminal 2: Backend with hot reload
 cd backend
@@ -239,14 +239,14 @@ Access:
 
 ```bash
 # Build images locally
-docker-compose build
+docker compose build
 
 # Test production build
-docker-compose up
+docker compose up
 
 # Verify all services healthy
 docker ps
-docker-compose logs
+docker compose logs
 ```
 
 ---
@@ -290,7 +290,7 @@ export COMPOSE_DOCKER_CLI_BUILD=1
 
 ### 3. Use Docker Volumes for node_modules
 
-Add to docker-compose.yml:
+Add to docker compose.yml:
 
 ```yaml
 backend:
@@ -317,7 +317,7 @@ docker ps -a
 docker images
 
 # View logs
-docker-compose logs [service]
+docker compose logs [service]
 
 # Execute command in container
 docker exec -it ecobuddy-backend sh
@@ -340,7 +340,7 @@ If using Apple Silicon:
 docker buildx create --use
 docker buildx build --platform linux/amd64,linux/arm64 -t ecobuddy-backend ./backend
 
-# Or force AMD64 in docker-compose.yml
+# Or force AMD64 in docker compose.yml
 services:
   backend:
     platform: linux/amd64
@@ -356,14 +356,14 @@ This Docker setup is production-ready and can be deployed to:
 2. **AWS ECS** - Use Docker images
 3. **Google Cloud Run** - Deploy containers
 4. **Azure Container Apps** - Use Docker Compose
-5. **Any VPS** - Use docker-compose
+5. **Any VPS** - Use docker compose
 
 ---
 
 ## Next Steps
 
 - ✅ Local development: Use `npm run dev` for hot reload
-- ✅ Testing changes: Use `docker-compose up --build`
+- ✅ Testing changes: Use `docker compose up --build`
 - ✅ Production deploy: Follow `DIGITALOCEAN_DEPLOYMENT.md`
 - ✅ CI/CD: Integrate Docker builds in GitHub Actions
 

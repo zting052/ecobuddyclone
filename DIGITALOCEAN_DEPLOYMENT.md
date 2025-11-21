@@ -514,10 +514,10 @@ DigitalOcean Managed Databases include automatic daily backups:
 
 ```bash
 # Test backend locally with Docker
-docker-compose up backend
+docker compose up backend
 
 # Test full stack locally
-docker-compose up
+docker compose up
 
 # Check backend health
 curl https://your-backend.ondigitalocean.app/api/health

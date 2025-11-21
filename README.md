@@ -234,12 +234,36 @@ Design source: `Energy-Saving Teen App Prototype.make` (in repo root)
 
 ## Deployment
 
+**🚀 Ready to deploy?** See [START_HERE.md](START_HERE.md) for quick deployment guide.
+
 The application requires a full-stack deployment with:
 - Frontend (React + Vite)
 - Backend API (Node.js + Express)
 - PostgreSQL Database
 
-Configure environment variables as needed for your deployment platform.
+### Deployment Options
+
+#### 🐳 Docker (Local Testing)
+Quick start with Docker Compose for local development and testing:
+```bash
+docker compose up
+```
+See [DOCKER_QUICKSTART.md](DOCKER_QUICKSTART.md) for detailed Docker instructions.
+
+#### ☁️ DigitalOcean (Production)
+Deploy to DigitalOcean App Platform with managed PostgreSQL:
+- Step-by-step deployment guide
+- Environment configuration
+- Custom domain setup
+- Cost estimates (~$23/month)
+
+See [DIGITALOCEAN_DEPLOYMENT.md](DIGITALOCEAN_DEPLOYMENT.md) for complete deployment instructions.
+
+#### Other Platforms
+The Docker setup works with any container platform:
+- AWS ECS, Google Cloud Run, Azure Container Apps
+- Any VPS with Docker installed
+- Configure environment variables as needed for your platform
 
 ## Contributing
 
